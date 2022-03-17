@@ -1,0 +1,148 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply font-Poppins
+    }
+
+    html, body {
+        /* overflow: hidden; */
+        margin: 0;
+        padding: 0;
+    }   
+
+    body {
+        text-align: center;
+    }
+    
+    h2 {
+        margin: 0;
+        font-style: italic;
+    }
+}
+
+@layer components {
+    .primary-btn {
+        @apply text-white uppercase text-sm pt-3 pb-3 pl-8 pr-8;
+        background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
+        border: none;
+        border-radius: 30px;
+    }
+
+    .secondary-btn {
+        @apply text-gray-600 bg-white font-medium text-sm uppercase m-1;
+        padding: 12px 30px;
+        border-radius: 30px;
+        border: solid 2px rgb(121, 119, 119);
+    }
+
+    .primary-btn:hover {
+        background: linear-gradient(260deg, rgb(254, 48, 114), rgb(255, 89, 64))
+    }
+
+    .secondary-btn:hover {
+        color: rgb(48, 48, 48);
+        border: solid 2px rgb(48, 48, 48);
+    }
+
+    /* Nav */
+    nav .nav-btn {
+        color: rgb(254, 48, 114);
+        background-color: rgb(255, 255,255);
+        padding: 0 20px;
+        border-radius: 10px;
+        border: none;
+        @apply text-pink-600 text-xl font-bold mr-2
+    }
+
+    /* Home */
+    
+    .overlay {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+            to bottom, 
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0) 100%
+        ), url("../images/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    /* AuthModal */
+    .auth-modal {
+        @apply absolute bg-white p-10;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 100px;
+        width: 360px;
+        height: 600px;
+        border-radius: 10px;
+    }
+
+    .auth-modal input[type=password],
+    .auth-modal input[type=email] {
+        @apply p-2 m-2 text-base;
+    }
+
+    /* Onboarding */
+    .onboarding form input::-webkit-outer-spin-button,
+    .onboarding form input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    .onboarding {
+        border-top: solid 1px rgb(154, 154, 154);
+    }
+
+    .onaboarding form label {
+        margin: 10px 0;
+    }
+
+    .onboarding form input {
+        padding: 15px 30px;
+        margin: 10px 0;
+        font-size: 15px;
+        border: solid 2px rgb(219, 219, 219);
+        border-radius: 10px;
+    }
+
+    .onboarding form .flex-row input {
+        margin-right: 10px;
+    }
+
+    .onboarding form .flex-row label {
+        padding: 10px;
+        border: solid 2px rgb(144, 144, 144);
+        border-radius: 10px;
+        transition: all 0.3;
+        margin-right: 10px;
+    }
+
+    .onboarding form input[type='radio'] {
+        display: none;
+    }
+
+    .onboarding form input[type='radio']:checked {
+        border: solid 2px rgb(221, 39, 22);
+    }
+
+    .onboarding form input[type='submit']:hover {
+        background-color: rgb(235, 235, 235)
+    }
+
+    .onboarding form input[type='submit']:active {
+        background-color: rgb(226, 115, 155);
+    }
+
+    .onboarding form input[type='number'] {
+        width: 10%;
+    }
+}

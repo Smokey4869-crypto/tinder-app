@@ -1,0 +1,188 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+        font-family: Poppins, sans-serif;
+}
+
+html, body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+body {
+        text-align: center;
+    }
+
+h2 {
+        margin: 0;
+        font-style: italic;
+    }
+
+*, ::before, ::after{
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x:  ;
+        --tw-pan-y:  ;
+        --tw-pinch-zoom:  ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-ordinal:  ;
+        --tw-slashed-zero:  ;
+        --tw-numeric-figure:  ;
+        --tw-numeric-spacing:  ;
+        --tw-numeric-fraction:  ;
+        --tw-ring-inset:  ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur:  ;
+        --tw-brightness:  ;
+        --tw-contrast:  ;
+        --tw-grayscale:  ;
+        --tw-hue-rotate:  ;
+        --tw-invert:  ;
+        --tw-saturate:  ;
+        --tw-sepia:  ;
+        --tw-drop-shadow:  ;
+        --tw-backdrop-blur:  ;
+        --tw-backdrop-brightness:  ;
+        --tw-backdrop-contrast:  ;
+        --tw-backdrop-grayscale:  ;
+        --tw-backdrop-hue-rotate:  ;
+        --tw-backdrop-invert:  ;
+        --tw-backdrop-opacity:  ;
+        --tw-backdrop-saturate:  ;
+        --tw-backdrop-sepia:  ;
+}
+.primary-btn{
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        text-transform: uppercase;
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+        background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
+        border: none;
+        border-radius: 30px;
+}
+.secondary-btn{
+        margin: 0.25rem;
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        --tw-text-opacity: 1;
+        color: rgb(75 85 99 / var(--tw-text-opacity));
+        padding: 12px 30px;
+        border-radius: 30px;
+        border: solid 2px rgb(121, 119, 119);
+}
+.primary-btn:hover {
+        background: linear-gradient(260deg, rgb(254, 48, 114), rgb(255, 89, 64))
+    }
+.secondary-btn:hover {
+        color: rgb(48, 48, 48);
+        border: solid 2px rgb(48, 48, 48);
+    }
+/* Nav */
+nav .nav-btn {
+        color: rgb(254, 48, 114);
+        background-color: rgb(255, 255,255);
+        padding: 0 20px;
+        border-radius: 10px;
+        border: none;
+        margin-right: 0.5rem;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-weight: 700;
+        --tw-text-opacity: 1;
+        color: rgb(219 39 119 / var(--tw-text-opacity))}
+/* Home */
+.overlay {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+            to bottom, 
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0) 100%
+        ), url("../images/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+/* AuthModal */
+.auth-modal{
+        position: absolute;
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+        padding: 2.5rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 100px;
+        width: 360px;
+        height: 600px;
+        border-radius: 10px;
+}
+.auth-modal input[type=password], .auth-modal input[type=email]{
+        margin: 0.5rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+}
+.float-right{
+        float: right;
+}
+.mt-5{
+        margin-top: 1.25rem;
+}
+.mb-2{
+        margin-bottom: 0.5rem;
+}
+.ml-4{
+        margin-left: 1rem;
+}
+.mb-3{
+        margin-bottom: 0.75rem;
+}
+.mt-32{
+        margin-top: 8rem;
+}
+.flex{
+        display: flex;
+}
+.w-full{
+        width: 100%;
+}
+.w-40{
+        width: 10rem;
+}
+.flex-col{
+        flex-direction: column;
+}
+.justify-between{
+        justify-content: space-between;
+}
+.pt-3{
+        padding-top: 0.75rem;
+}
+.font-black{
+        font-weight: 900;
+}
+.font-extrabold{
+        font-weight: 800;
+}

@@ -14,7 +14,7 @@ const Onboarding = () => {
     gender_identity: 'man',
     gender_interest: 'woman',
     email: '',
-    url: 'https://i.imgur.com/JkTM3xq.jpeg',
+    url: 'https://i.imgur.com/CZuZiIU.jpeg',
     about: '',
     matches: ''
   })
@@ -46,7 +46,7 @@ const Onboarding = () => {
         <h2 className='mt-6'>CREATE ACCOUNT</h2>
 
         <form className='flex justify-center' onSubmit={handleSubmit}>
-          <section className='flex flex-col p-5 text-left'>
+          <section className='flex flex-col p-5 text-left' style={{width: "600px"}}>
             <label htmlFor="first_name">First Name</label>
             <input
               type="text"
@@ -171,7 +171,7 @@ const Onboarding = () => {
             <input type="submit" />
           </section>
 
-          <section className='flex flex-col p-5 text-left'>
+          <section className='flex flex-col p-5 text-left' style={{width: "300px"}}>
             <label htmlFor="about">Profile Picture</label>
             <input 
               type="url"

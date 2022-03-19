@@ -130,7 +130,7 @@
         display: none;
     }
 
-    .onboarding form input[type='radio']:checked {
+    .onboarding form input[type='radio']:checked + label {
         border: solid 2px rgb(221, 39, 22);
     }
 
@@ -187,7 +187,7 @@
 
     .chat-container .chat-container-header {
         background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
-        height: 100px;
+        height: 80px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -206,18 +206,24 @@
     }
 
     .chat-container .img-container {
-        @apply h-8 w-8 overflow-hidden m-2;
-        border-radius: 15px;
+        @apply h-10 w-10 overflow-hidden mr-2;
+        border-radius: 50%;
     }
 
     .chat-container-header .img-container img {
         width: 100%;
-        border-radius: 99%;
     }
+
+    .chat-container .chat-container-header .logout {
+        color: #fff;
+        font-size: 0.9rem;
+        margin-right: 20px;
+    }
+
 
     /* Chat Display */
     .chat-display {
         @apply p-5;
-        height: 51vh;
+        height: 55vh;
     }
 }

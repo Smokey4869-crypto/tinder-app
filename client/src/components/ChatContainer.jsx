@@ -4,10 +4,11 @@ import ChatHeader from './ChatHeader'
 import ChatDisplay from './ChatDisplay'
 import MatchDisplay from './MatchDisplay'
 
-const ChatContainer = () => {
+const ChatContainer = props => {
+  const user = props.user
   return (
     <div className="chat-container">
-        <ChatHeader/>
+        <ChatHeader user={user}/>
         <div>
             <button className="option">Matches</button>
             <button className="option">Messages</button>

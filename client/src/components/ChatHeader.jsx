@@ -1,15 +1,23 @@
 import React from 'react'
+import { useCookies } from 'react-cookie'
 
-const ChatHeader = () => {
+const ChatHeader = props => {
+  const [cookies, setCookie, removeCookies] = useCookies(['user'])
+  const user = props.user 
+  const logout = () => {
+    removeCookies('UserId', cookies.UserId)
+    removeCookies('AuthToken', cookies.AuthToken)
+    window.location.reload()
+  }
   return (
     <div className="chat-container-header">
-        <div className="flex items-center p-5 text-white">
+        <div className="flex items-center pl-5 text-white">
             <div className="img-container">
-                <img src="" alt="" />
+                <img src={user ? user.url : ""} alt="" />
             </div>
-            <h3>Username</h3>
+            <h3>{user ? user.first_name : "Username"}</h3>
         </div>
-        <i className="log-out-icon"></i>
+        <i className="logout" onClick={logout}>Log Out</i>
     </div>
   )
 }

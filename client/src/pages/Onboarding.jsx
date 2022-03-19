@@ -1,11 +1,15 @@
+import axios from 'axios'
 import React, { useState } from 'react'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
 
 import Nav from '../components/Nav'
 
 const Onboarding = () => {
-
+  let navigate = useNavigate()
+  const [cookies, setCookie, removeCookies] = useCookies(['user'])
   const [formData, setFormData] = useState({
-    user_id: '',
+    user_id: cookies.UserId,
     first_name: '',
     dob_day: '',
     dob_month: '',
@@ -13,23 +17,30 @@ const Onboarding = () => {
     show_gender: false,
     gender_identity: 'man',
     gender_interest: 'woman',
-    email: '',
-    url: 'https://i.imgur.com/CZuZiIU.jpeg',
+    url: '',
     about: '',
     matches: ''
   })
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.put('http://localhost:5000/user/update', { formData })
+      const success = response.status == 200
+      if (success) navigate ('/dashboard')
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   const handleChange = (e) => {
-    const value = e.target.value
+    console.log('changed')
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     const name = e.target.name
 
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name] : value
     }))
   }
 
@@ -94,38 +105,39 @@ const Onboarding = () => {
               <input
                 type="radio"
                 id='man-gender-identity'
-                name='gender-identity'
+                name='gender_identity'
                 value="man"
                 onChange={handleChange}
                 checked={formData.gender_identity === 'man'} />
-              <label>Man</label>
+              <label htmlFor='man-gender-identity'>Man</label>
 
               <input
                 type="radio"
                 id='woman-gender-identity'
-                name='gender-identity'
+                name='gender_identity'
                 value="woman"
                 onChange={handleChange}
                 checked={formData.gender_identity === 'woman'} />
-              <label>Woman</label>
+              <label htmlFor='woman-gender-identity'>Woman</label>
 
               <input
                 type="radio"
                 id='more-gender-identity'
-                name='gender-identity'
+                name='gender_identity'
                 value="more"
                 onChange={handleChange}
                 checked={formData.gender_identity === 'more'} />
-              <label>More</label>
+              <label htmlFor='more-gender-identity'>More</label>
             </div>
 
             <label htmlFor="show-gender" className='mt-3'>Show gender on my profile</label>
             <input
               type="checkbox"
               id='show-gender'
-              name='show-gender'
+              name='show_gender'
+              value="show-gender"
               onChange={handleChange}
-              checked={formData.show_gender} />
+              checked={formData.show_gender === true } />
 
             <label>Show Me</label>
             <div className='flex flex-row mt-5'>
@@ -133,29 +145,29 @@ const Onboarding = () => {
                 <input
                   type="radio"
                   id='man-gender-interest'
-                  name='gender-interest'
+                  name='gender_interest'
                   value="man"
                   onChange={handleChange}
                   checked={formData.gender_interest === 'man'} />
-                <label>Man</label>
+                <label htmlFor='man-gender-interest'>Man</label>
 
                 <input
                   type="radio"
                   id='woman-gender-interest'
-                  name='gender-interest'
+                  name='gender_interest'
                   value="woman"
                   onChange={handleChange}
                   checked={formData.gender_interest === 'woman'} />
-                <label>Woman</label>
+                <label  htmlFor='woman-gender-interest'>Woman</label>
 
                 <input
                   type="radio"
-                  id='more-gender-interest'
-                  name='gender-interest'
+                  id='everyone-gender-interest'
+                  name='gender_interest'
                   value="everyone"
                   onChange={handleChange}
                   checked={formData.gender_interest === 'everyone'} />
-                <label>More</label>
+                <label  htmlFor='everyone-gender-interest'>More</label>
               </div>
             </div>
 

@@ -1,26 +1,44 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 const AuthModal = props => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
     const [error, setError] = useState(null)
-
+    const [cookies, setCookie, removeCookies] = useCookies(['user'])
+ 
     const setShowModal = props.setShowModal
     const isSignUp = props.isSignUp
-    const setIsSignUp = props.setIsSignUp
+
+
+    let navigate = useNavigate()
 
     const handleClick = () => {
         setShowModal(false)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             if (isSignUp && (password !== confirmPassword)) {
                 setError("Passwords need to match")
+                return
             }
-            console.log("make a post request to database")
+            
+            const response = await axios.post(`http://localhost:5000/auth/${isSignUp ? 'signup' : 'login'}`, { email, password })
+            
+            setCookie('UserId', response.data.userId)
+            setCookie('AuthToken', response.data.token)
+
+            const success = response.status == 201
+
+            if (success && isSignUp) navigate ('/onboarding')
+            if (success && !isSignUp) navigate ('/dashboard')
+            
+
         } catch(err) {
             console.log(err)
         }
@@ -50,17 +68,19 @@ const AuthModal = props => {
                     onChange={(e) => {
                         setPassword(e.target.value)
                     }}/>
-                <input 
-                    type="password" 
-                    id='password-check' 
-                    name='password-check' 
-                    placeholder='Confirm your password' 
-                    required={true} 
-                    onChange={(e) => {
-                        setConfirmPassword(e.target.value)
-                    }}/>
-                    <button className='secondary-btn' type='submit'>Submit</button>
-                    <p>{error}</p>
+                {
+                    isSignUp ? (<input 
+                        type="password" 
+                        id='password-check' 
+                        name='password-check' 
+                        placeholder='Confirm your password' 
+                        required={true} 
+                        onChange={(e) => {
+                            setConfirmPassword(e.target.value)
+                        }}/>) : <></>
+                }
+                <button className='secondary-btn' type='submit'>Submit</button>
+                <p>{error}</p>
             </form>
             <hr />
             <h2 className='mt-5 font-black'>GET THE APP</h2>

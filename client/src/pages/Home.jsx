@@ -6,13 +6,14 @@ import Nav from '../components/Nav'
 
 export const Home = () => {
     const [showModal, setShowModal] = useState(false)
-    const [isSignUp, setIsSignUp] = useState(true)
+    const [isSignUp, setIsSignUp] = useState(false)
 
     const authToken = true
 
     const handleClick = () => {
         console.log("clicked")
         setShowModal(true)
+        setIsSignUp(true)
     }
 
     return (

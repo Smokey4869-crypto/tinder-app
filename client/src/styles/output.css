@@ -6,7 +6,7 @@
 }
 
 html, body {
-        overflow: hidden;
+        /* overflow: hidden; */
         margin: 0;
         padding: 0;
     }
@@ -144,8 +144,136 @@ nav .nav-btn {
         font-size: 1rem;
         line-height: 1.5rem;
 }
+/* Onboarding */
+.onboarding form input::-webkit-outer-spin-button,
+    .onboarding form input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+.onboarding {
+        border-top: solid 1px rgb(154, 154, 154);
+    }
+.onboarding form input {
+        padding: 15px 30px;
+        margin: 10px 0;
+        font-size: 15px;
+        border: solid 2px rgb(219, 219, 219);
+        border-radius: 10px;
+    }
+.onboarding form .flex-row input {
+        margin-right: 10px;
+    }
+.onboarding form .flex-row label {
+        padding: 10px;
+        border: solid 2px rgb(144, 144, 144);
+        border-radius: 10px;
+        transition: all 0.3;
+        margin-right: 10px;
+    }
+.onboarding form input[type='radio'] {
+        display: none;
+    }
+.onboarding form input[type='radio']:checked + label {
+        border: solid 2px rgb(221, 39, 22);
+    }
+.onboarding form input[type='submit']:hover {
+        background-color: rgb(235, 235, 235)
+    }
+.onboarding form input[type='submit']:active {
+        background-color: rgb(226, 115, 155);
+    }
+.onboarding form input[type='number'] {
+        width: 10%;
+    }
+/* Dashboard */
+.dashboard {
+        display: flex;
+    }
+.dashboard .swipe-container {
+        width: 70%;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+.swipe {
+        position: absolute;
+    }
+.dashboard .card-container{
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 650px;
+}
+.card {
+        width: 400px;
+        height: 650px;
+        box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.30);
+        border-radius: 30px;
+        background-size: cover;
+        background-position: center;
+    }
+/* ChatContainer */
+.chat-container {
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 8px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        width: 25%;
+        text-align: left;
+        z-index: 1;
+    }
+.chat-container .chat-container-header {
+        background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+.chat-container .option {
+        border: none;
+        border-bottom: solid 4px rgb(243, 33, 33);
+        margin: 0.75rem;
+        margin-top: 0px;
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+        padding: 0.5rem;
+        font-size: 15px;
+        font-weight: bold;
+    }
+.chat-container .option:disabled {
+        border-bottom: solid 4px rgb(187, 187, 187);
+    }
+.chat-container .img-container{
+        margin-right: 0.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        overflow: hidden;
+        border-radius: 50%;
+}
+.chat-container-header .img-container img {
+        width: 100%;
+    }
+.chat-container .chat-container-header .logout {
+        color: #fff;
+        font-size: 0.9rem;
+        margin-right: 20px;
+    }
+/* Chat Display */
+.chat-display{
+        padding: 1.25rem;
+        height: 55vh;
+}
+.absolute{
+        position: absolute;
+}
+.bottom-0{
+        bottom: 0px;
+}
 .float-right{
         float: right;
+}
+.m-3{
+        margin: 0.75rem;
 }
 .mt-5{
         margin-top: 1.25rem;
@@ -156,11 +284,20 @@ nav .nav-btn {
 .ml-4{
         margin-left: 1rem;
 }
+.ml-5{
+        margin-left: 1.25rem;
+}
 .mb-3{
         margin-bottom: 0.75rem;
 }
 .mt-32{
         margin-top: 8rem;
+}
+.mt-6{
+        margin-top: 1.5rem;
+}
+.mt-3{
+        margin-top: 0.75rem;
 }
 .flex{
         display: flex;
@@ -171,18 +308,44 @@ nav .nav-btn {
 .w-40{
         width: 10rem;
 }
+.flex-row{
+        flex-direction: row;
+}
 .flex-col{
         flex-direction: column;
+}
+.items-center{
+        align-items: center;
+}
+.justify-center{
+        justify-content: center;
 }
 .justify-between{
         justify-content: space-between;
 }
+.p-5{
+        padding: 1.25rem;
+}
+.pl-5{
+        padding-left: 1.25rem;
+}
 .pt-3{
         padding-top: 0.75rem;
+}
+.text-left{
+        text-align: left;
+}
+.text-3xl{
+        font-size: 1.875rem;
+        line-height: 2.25rem;
 }
 .font-black{
         font-weight: 900;
 }
 .font-extrabold{
         font-weight: 800;
+}
+.text-white{
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
 }

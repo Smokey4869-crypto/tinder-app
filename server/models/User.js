@@ -39,6 +39,11 @@ const UserSchema = new mongoose.Schema(
             {
                 type: String
             }
+        ],
+        matches: [
+            {
+                type: String
+            }
         ]
     }, 
     { timestamps: true}

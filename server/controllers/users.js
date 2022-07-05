@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import { UserModel } from '../models/User'
 
 const URL = process.env.DATABASE_URL
@@ -62,16 +61,38 @@ export const addMatch = async (req, res) => {
 
     try {
         const filter = { user_id: userId }
+        const user = await UserModel.findOne(filter)
+        const matches = user.matches
         const update = {
-            matches: { user_id: matchedUserId }
+            matches: [ ...matches, matchedUserId ]
         }
 
-        const user = await UserModel.findOneAndUpdate(filter, update)
+        const updatedUser = await UserModel.findOneAndUpdate(filter, update)
 
-        res.send(user)
+        res.send(updatedUser)
     } catch (err) {
         console.log(err)
-    } finally {
-        await client.close()
+    }
+}
+
+export const getMatches = async (req, res) => {
+    const userIds = JSON.parse(req.query.userIds)
+
+    try {
+        const pipeline = [
+            {
+                '$match': {
+                    'user_id': {
+                        '$in': userIds
+                    }
+                }
+            }
+        ]
+
+        const foundUsers = await UserModel.aggregate(pipeline).toArray()
+        res.send(foundUsers)
+
+    } catch (err) {
+        console.log(err)
     }
 }

@@ -205,7 +205,7 @@
         border-bottom: solid 4px rgb(187, 187, 187);
     }
 
-    .chat-container .img-container {
+    .img-container {
         @apply h-10 w-10 overflow-hidden mr-2;
         border-radius: 50%;
     }
@@ -226,4 +226,18 @@
         @apply p-5;
         height: 55vh;
     }
+
+    /* Match Display */
+    .match-display {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+    /* .match-display-card img {
+        width: 86.99px;
+        height: 120px;
+        border-radius: 15px;
+    } */
 }

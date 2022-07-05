@@ -37,7 +37,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser()
-    getGenderedUsers()
+    if (user) getGenderedUsers()
   }, [user, genderedUsers])
 
 
@@ -65,7 +65,13 @@ const Dashboard = () => {
     console.log(name + ' left the screen!')
   }
 
-  console.log(user)
+  const matchedUserIds = user?.matches.map(({user_id}) => user_id.concat(userId))
+
+  const filteredGenderedUsers = genderedUsers?.filter(
+    genderedUser => !matchedUserIds.includes(genderedUser.user_id)
+  )
+
+  // console.log(user)
 
   return (
     <>
@@ -75,7 +81,7 @@ const Dashboard = () => {
           <div className="swipe-container">
             <div className="card-container">
               {
-                genderedUsers && genderedUsers.map((character, index) =>
+                filteredGenderedUsers?.map((character, index) =>
                   <TinderCard className='swipe' key={index} onSwipe={(dir) => swiped(dir, character.user_id)} onCardLeftScreen={() => outOfFrame(character.first_name)}>
                     <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
                       <h3 className='absolute bottom-0 m-3 ml-5 text-white text-3xl'>{character.first_name}</h3>

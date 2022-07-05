@@ -7,7 +7,7 @@ import Nav from '../components/Nav'
 
 const Onboarding = () => {
   let navigate = useNavigate()
-  const [cookies, setCookie, removeCookies] = useCookies(['user'])
+  const [cookies, setCookie, removeCookies] = useCookies(null)
   const [formData, setFormData] = useState({
     user_id: cookies.UserId,
     first_name: '',
@@ -17,12 +17,13 @@ const Onboarding = () => {
     show_gender: false,
     gender_identity: 'man',
     gender_interest: 'woman',
-    url: '',
+    url: [],
     about: '',
-    matches: ''
+    matches: []
   })
 
   const handleSubmit = async (e) => {
+    // console.log('submitted')
     e.preventDefault()
     try {
       const response = await axios.put('http://localhost:5000/user/update', { formData })
@@ -34,7 +35,6 @@ const Onboarding = () => {
   }
 
   const handleChange = (e) => {
-    console.log('changed')
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     const name = e.target.name
 

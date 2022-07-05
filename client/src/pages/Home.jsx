@@ -4,7 +4,7 @@ import { useState } from 'react'
 import AuthModal from '../components/AuthModal'
 import Nav from '../components/Nav'
 
-export const Home = () => {
+const Home = () => {
     const [showModal, setShowModal] = useState(false)
     const [isSignUp, setIsSignUp] = useState(false)
 
@@ -40,3 +40,5 @@ export const Home = () => {
         </div>
     )
 }
+
+export default Home

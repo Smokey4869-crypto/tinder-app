@@ -13,7 +13,7 @@ const ChatHeader = props => {
     <div className="chat-container-header">
         <div className="flex items-center pl-5 text-white">
             <div className="img-container">
-                <img src={user ? user.url : ""} alt="" />
+                <img src={user ? user.url[0] : ""} alt="" />
             </div>
             <h3>{user ? user.first_name : "Username"}</h3>
         </div>

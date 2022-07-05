@@ -16,8 +16,8 @@ const Dashboard = () => {
     try {
       const response = await axios.get('http://localhost:5000/user', {
         params: { userId }
-      })
-      setUser(response.data)
+      }) 
+      setUser(response.data.user)
     } catch (err) {
       console.log(err)
     }
@@ -37,8 +37,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser()
-    if (user) getGenderedUsers()
-  }, [user, genderedUsers])
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      getGenderedUsers()
+    }
+  }, [user])
 
 
   const updateMatches = async (matchedUserId) => {
@@ -65,16 +70,15 @@ const Dashboard = () => {
     console.log(name + ' left the screen!')
   }
 
-  const matchedUserIds = user?.matches.map(({user_id}) => user_id.concat(userId))
+  const matchedUserIds = user?.matches.map((user_id) => user_id).concat(userId)
+  const filteredGenderedUsers = genderedUsers?.filter(genderedUser => !matchedUserIds.includes(genderedUser.user_id))
 
-  const filteredGenderedUsers = genderedUsers?.filter(
-    genderedUser => !matchedUserIds.includes(genderedUser.user_id)
-  )
-
-  // console.log(user)
+  matchedUserIds && console.log(matchedUserIds)
+  // filteredGenderedUsers && console.log(filteredGenderedUsers)
 
   return (
     <>
+     
       {
         user && <div className="dashboard">
           <ChatContainer user={user} />
@@ -82,7 +86,7 @@ const Dashboard = () => {
             <div className="card-container">
               {
                 filteredGenderedUsers?.map((character, index) =>
-                  <TinderCard className='swipe' key={index} onSwipe={(dir) => swiped(dir, character.user_id)} onCardLeftScreen={() => outOfFrame(character.first_name)}>
+                  <TinderCard className='swipe' key={character.user_id} onSwipe={(dir) => swiped(dir, character.user_id)} onCardLeftScreen={() => outOfFrame(character.first_name)}>
                     <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
                       <h3 className='absolute bottom-0 m-3 ml-5 text-white text-3xl'>{character.first_name}</h3>
                     </div>

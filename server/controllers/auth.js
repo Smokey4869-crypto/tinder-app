@@ -1,23 +1,8 @@
 import bcrypt from 'bcrypt'
-import { UserModel } from '../models/User'
+import { UserModel } from '../models/User.js'
+import jwt from 'jsonwebtoken'
 
 const URL = process.env.DATABASE_URL
-
-export const getAllUSers = async () => {
-    const client = new MongoClient(URL)
-    try {
-        await client.connect()
-        const database = client.db('data')
-        const users = database.collection('users')
-
-        const result = await users.find().toArray()
-        res.send(result)
-    } catch(err) {
-        console.log(err)
-    } finally {
-        await client.close()
-    }
-}
 
 export const login = async (req, res) => {
     try {
@@ -25,25 +10,24 @@ export const login = async (req, res) => {
             email: req.body.email
         })
 
-        !user && res.status(404).json("User not found")
+        if (!user) {
+            res.status(404).json("User not found")
+        } else {
+            const validPassword = await bcrypt.compare(req.body.password, user.password)
+            !validPassword && res.status(400).json("Wrong password")
 
-        const validPassword = await bcrypt.compare(req.body.password, user.password)
-        !validPassword && res.status(400).json("Wrong password")
 
-        //authorization
-        const data = req.body
-        
-        if (user && validPassword) {
-            const token = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 60 * 24, })
-            res.status(201).json({ token, userId: user.user_id })
+            if (user && validPassword) {
+                const token = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 60 * 24, })
+                res.status(201).json({ token, userId: user.user_id })
+            } else {
+                res.status(400).json("Invalid credentials")
+            }
         }
-
-        res.status(400).send("Invalid credentials")
         
     } catch(err) {
         console.log(err)
     }
-
 }
 
 export const signup = async (req, res) => {

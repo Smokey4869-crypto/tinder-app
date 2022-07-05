@@ -243,7 +243,7 @@ nav .nav-btn {
 .chat-container .option:disabled {
         border-bottom: solid 4px rgb(187, 187, 187);
     }
-.chat-container .img-container{
+.img-container{
         margin-right: 0.5rem;
         height: 2.5rem;
         width: 2.5rem;
@@ -257,12 +257,26 @@ nav .nav-btn {
         color: #fff;
         font-size: 0.9rem;
         margin-right: 20px;
+        cursor: pointer;
     }
 /* Chat Display */
 .chat-display{
         padding: 1.25rem;
         height: 55vh;
 }
+/* Match Display */
+.match-display {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+/* .match-display-card img {
+        width: 86.99px;
+        height: 120px;
+        border-radius: 15px;
+    } */
 .absolute{
         position: absolute;
 }

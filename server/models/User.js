@@ -7,11 +7,14 @@ const UserSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        hashed_password: {
+        email: {
+            type: String, 
+        },
+        password: {
             type: String,
             required: true
         },
-        first_name: {
+        about: {
             type: String, 
         },
         dob_day: {
@@ -23,8 +26,8 @@ const UserSchema = new mongoose.Schema(
         dob_year:  {
             type: Number, 
         },
-        show_gender: {
-            type: Boolean,
+        first_name: {
+            type: String,
         },
         gender_identity: {
             type: String, 
@@ -32,19 +35,19 @@ const UserSchema = new mongoose.Schema(
         gender_interest: {
             type: String, 
         },
-        email: {
-            type: String, 
+        matches: [
+          {
+            type: String,
+          }  
+        ],
+        show_gender: {
+            type: Boolean,
         },
         url: [
             {
                 type: String
             }
         ],
-        matches: [
-            {
-                type: String
-            }
-        ]
     }, 
     { timestamps: true}
 );

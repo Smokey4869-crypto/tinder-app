@@ -44,6 +44,19 @@ const AuthModal = props => {
         }
     }
 
+    const handleEmailChange = (value) => {
+        setEmail(value)
+    }
+
+    const handlePasswordChange = (value) => {
+        setPassword(value)
+    }
+
+    const handleConfirmPasswordChange = (value) => {
+        setConfirmPassword(value)
+    }
+
+
     return (
         <div className="auth-modal">
             <div className="float-right" style={{marginTop: "-23px", marginRight: "-15px"}} onClick={handleClick}>&#x2715;</div>   
@@ -57,7 +70,7 @@ const AuthModal = props => {
                     placeholder='Email' 
                     required={true} 
                     onChange={(e) => {
-                        setEmail(e.target.value)
+                        handleEmailChange(e.target.value)
                     }}/>
                 <input 
                     type="password" 
@@ -66,7 +79,7 @@ const AuthModal = props => {
                     placeholder='Password' 
                     required={true} 
                     onChange={(e) => {
-                        setPassword(e.target.value)
+                        handlePasswordChange(e.target.value)
                     }}/>
                 {
                     isSignUp ? (<input 
@@ -76,7 +89,7 @@ const AuthModal = props => {
                         placeholder='Confirm your password' 
                         required={true} 
                         onChange={(e) => {
-                            setConfirmPassword(e.target.value)
+                            handleConfirmPasswordChange(e.target.value)
                         }}/>) : <></>
                 }
                 <button className='secondary-btn' type='submit'>Submit</button>

@@ -37,7 +37,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser()
-  }, [])
+  })
 
   useEffect(() => {
     if (user) {
@@ -72,9 +72,6 @@ const Dashboard = () => {
 
   const matchedUserIds = user?.matches.map((user_id) => user_id).concat(userId)
   const filteredGenderedUsers = genderedUsers?.filter(genderedUser => !matchedUserIds.includes(genderedUser.user_id))
-
-  matchedUserIds && console.log(matchedUserIds)
-  // filteredGenderedUsers && console.log(filteredGenderedUsers)
 
   return (
     <>

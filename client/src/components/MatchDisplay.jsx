@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 
 const MatchDisplay = props => {
 
-  const setClickedUser = props.setClickedUser
+  const setUserToChat = props.setUserToChat
   const matches = props.matches
   const [matchesProfile, setMatchesProfile] = useState(null)
-  const matchedUserIds = matches.map(({ user_id}) => user_id)
+  const matchedUserIds = matches.map((user_id) => user_id)
 
   const getMatches = async () => {
     try {
@@ -33,9 +33,9 @@ const MatchDisplay = props => {
       {
         matchesProfile?.map((item, index) => (
           <div className="match-display-card" 
-            key={index} 
-            onClick={() => setClickedUser(item)}>
-              <img src={item.url} style={{width: '100%'}}/>
+            key={item.user_id} 
+            onClick={() => setUserToChat(item)}>
+              <img src={item.url[0]} style={{width: '100%'}} alt={item.first_name}/>
           </div>
         ))
       }

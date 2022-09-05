@@ -33,7 +33,7 @@ const AuthModal = props => {
             setCookie('UserId', response.data.userId)
             setCookie('AuthToken', response.data.token)
 
-            const success = response.status == 201
+            const success = response.status === 201
 
             if (success && isSignUp) navigate ('/onboarding')
             if (success && !isSignUp) navigate ('/dashboard')

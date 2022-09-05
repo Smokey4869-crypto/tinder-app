@@ -3,19 +3,19 @@ import React, { useEffect, useState } from 'react'
 
 const ChatDisplay = props => {
     const user = props.user
-    const clickedUser = props.clickedUser
+    const userToChat = props.userToChat
 
     const userId = user?.user_id
-    const clickedUserId = clickedUser?.user_id
+    const userToChatId = userToChat?.user_id
 
     const [userMessages, setUserMessages] = useState(null)
-    const [clickedUserMessages, setClickedUserMessages] = useState(null)
+    const [userToChatMessages, setUserToChatMessages] = useState(null)
 
     const getUsersMessages = async () => {
         try {
             const response = await axios.get('http://localhost:5000/messages', {
                 params: {
-                    userId: userId, correspondingUserId: clickedUserId
+                    userId: userId, correspondingUserId: userToChatId
                 }
             })
 
@@ -25,15 +25,15 @@ const ChatDisplay = props => {
         }        
     }
 
-    const getClickedUsersMessages = async () => {
+    const getUserToChatMessages = async () => {
         try {
             const response = await axios.get('http://localhost:5000/messages', {
                 params: {
-                    userId: clickedUserId, correspondingUserId: userId
+                    userId: userToChatId, correspondingUserId: userId
                 }
             })
 
-            setClickedUserMessages(response.data)
+            setUserToChatMessages(response.data)
         } catch(err) {
             console.log(err)
         }        
@@ -41,8 +41,8 @@ const ChatDisplay = props => {
 
     useEffect(() => {
         getUsersMessages()
-        getClickedUsersMessages()
-    }, [userMessages, clickedUserMessages])
+        getUserToChatMessages()
+    }, [userMessages, userToChatMessages])
 
     const allMessages = []
 
@@ -55,10 +55,11 @@ const ChatDisplay = props => {
         allMessages.push(formattedMsg)
     }) 
 
-    clickedUserMessages.forEach(m => {
+    
+    userToChatMessages.forEach(m => {
         const formattedMsg = {}
-        formattedMsg['name'] = clickedUser?.first_name
-        formattedMsg['img'] = clickedUser?.url
+        formattedMsg['name'] = userToChat?.first_name
+        formattedMsg['img'] = userToChat?.url
         formattedMsg['message'] = m.message
         formattedMsg['timestamp'] = m.timestamp
         allMessages.push(formattedMsg)
@@ -100,11 +101,15 @@ const Chat = props => {
 
 const ChatInput = () => {
     const [textarea, setTextarea] = useState()
+
+    const handleChange = (value) => {
+        setTextarea(value)
+    }
     return (
         <div className="p-5 flex flex-col">
             <textarea
                 value={textarea}
-                onChange={(e) => { setTextarea(e.target.value) }}></textarea>
+                onChange={(e) => handleChange(e.target.value)}></textarea>
             <button className="secondary-btn">Submit</button>
         </div>
     )

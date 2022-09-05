@@ -7,18 +7,22 @@ import MatchDisplay from './MatchDisplay'
 const ChatContainer = props => {
   const user = props.user
 
-  const [ clickedUser, setClickedUser] = useState(null)
+  const [ userToChat, setUserToChat] = useState(null)
+
+  const handleClick = (value) => {
+    setUserToChat(value)
+  }
 
   return (
     <div className="chat-container">
         <ChatHeader user={user}/>
         <div>
-            <button className="option" onClick={() => setClickedUser(null)}>Matches</button>
-            <button className="option" disabled={!clickedUser}>Messages</button>
+            <button className="option" onClick={handleClick(null)}>Matches</button>
+            <button className="option" disabled={!userToChat}>Messages</button>
             <button className="option">Likes You</button>
         </div>
-        {!clickedUser && <MatchDisplay matches={user.matches} setClickedUser={setClickedUser} />}
-        {clickedUser && <ChatDisplay user={user} clickedUser={clickedUser} />}
+        {!userToChat && <MatchDisplay matches={user.matches} setUserToChat={handleClick} />}
+        {userToChat && <ChatDisplay user={user} userToChat={userToChat} />}
     </div>
   )
 }
